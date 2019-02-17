@@ -3,12 +3,16 @@ const mongoose = require('mongoose');
 const users = require('./routes/api/users');
 const posts = require('./routes/api/posts');
 const profile = require('./routes/api/profile');
+const bodyParser = require('body-parser');
 
 const app = express();
 
 // db config
 
 const db = require('./config/keys').mongoURI;
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
     res.send('I am from server...');
